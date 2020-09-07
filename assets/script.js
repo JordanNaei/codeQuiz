@@ -52,7 +52,7 @@ var scoreBonus=20;
 var score=0;
 
 
-// Writing Functios
+// Writing Functions
 function startTimer() {
     hideStarter ();
     getQuestions();

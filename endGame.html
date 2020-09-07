@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/styles.css" />
     <title>End Game</title>
-    <script src="assets/script.js" defer></script>
-</head>
-<body>
-    <h1>I'm here and this is the end</h1>
-    
-</body>
+  </head>
+  <body>
+    <h1>You Complete the Quiz</h1>
+
+    <div class="container">
+      <div id="end" class="flex-center flec-column">
+        <h1 id="finalScore">0</h1>
+        <form>
+
+          <input type="text" name="Username" id="username" placeholder="username"/>
+
+ 
+          <button type="submit" class="btn btn-outline-primary" id="saveScoreBtn" disabled>Save</button>
+
+        </form>
+        <button type="button" id="goHome" class="btn btn-outline-primary">Retry</button>
+      </div>
+    </div>
+
+    <script src="assets/end.js"></script>
+  </body>
 </html>

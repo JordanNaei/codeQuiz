@@ -8,38 +8,48 @@ var secondsDisplay = document.getElementById("seconds");
 var minutesDisplay = document.getElementById("minutes");
 var multipleChoice =document.querySelectorAll(".answers");
 var buttonsWrapper =document.getElementById("buttonContainer");
+var outcome = document.getElementById("resultAnswer");
+var outcomeDiv = document.getElementById("result");
+var scoreCountText = document.getElementById("scoreCount");
+var questionsCountText = document.getElementById("questionCount");
 var toHide= true;
 var arrayIndex=0;
-var questions= [{question : "How well are you doing?",
-                 answers: [
-                {text: "Not Good", correct: true},
-                {text: "Very Good", correct: false},
-                {text: "Terrible", correct: false},
-                {text: "Awsome", correct: false}
-                ]
-                },
-                {question : "What the hell is going on?",
-                answers:[
-                {text: "notging", correct: false},
-                {text: "beornottobe", correct: true},
-                {text: "m", correct: false},
-                {text: "y", correct: false}
-                ]
-               },    
-               {question : "What are you doing?",
-               answers: [
-               {text: "gogogog", correct: false},
-               {text: "ffdfdfd", correct: true},
-               {text: "mamama", correct: false},
-               {text: "daaaaa", correct: false}
-               ]
-              }]
+var questions= [
+               {question : "How well are you doing?", 
+                an0: "Not Good",
+                an1: "Very Good",
+                an2: "Terrible",
+                an3: "Awsome",
+                answer: 2},
+                {question : "How well mnmmnn?", 
+                an0: "Nmnmn",
+                an1: "Very",
+                an2: "Terr",
+                an3: "Aws",
+                answer: 3},
+                {question : "How well ddfgdgfdf?", 
+                an0: "Not",
+                an1: "Good",
+                an2: "Terri",
+                an3: "Awshjghjkhjk",
+                answer: 1},
+                {question : "What does '7ARAH mean?", 
+                an0: "shit",
+                an1: "Good",
+                an2: "choclote",
+                an3: "Awshjghjkhjk",
+                answer: 1}
+                ],
+                
 
-var availableQuestions = [...questions];
+availableQuestions = [...questions];
 var currentQuestion;
 var questionsIndex=0;
 var questionsCounter=0;
+var maxQuestionsCount=10;
 var acceptingAnswers= false;
+var scoreBonus=20;
+var score=0;
 
 
 // Writing Functios
@@ -52,17 +62,14 @@ function startTimer() {
         secondsElapsed++;
         if (secondsElapsed >= totalSeconds){
             clearInterval (timerInterval);
-            return;
-            // endGame();
+            localStorage.setItem("latestScore", score);
+            return window.location.assign("endGame.html");
         }
         else {
             var secondsLeft = (totalSeconds - secondsElapsed);
             minutesDisplay.textContent = Math.floor(secondsLeft /60);
             secondsDisplay.textContent= (secondsLeft % 60);
-        
-         
         }
-    
     }, 1000);
   }
 
@@ -76,61 +83,68 @@ function hideStarter () {
 }
 
 function getQuestions () {
-    if (availableQuestions.length === 0) {
+    if (availableQuestions.length == 0) {
+        localStorage.setItem("latestScore", score);
         return window.location.assign("endGame.html");
     }
     questionsCounter++;
+    questionsCountText.textContent = questionsCounter +"/" + maxQuestionsCount; 
     var random = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[random];
     showQuestions.textContent = currentQuestion.question;
    
-    for (var j=0; j < toDisplayAnswers.length; j++) {
-        var buttonIndexing = toDisplayAnswers[j];
-        toDisplayAnswers[j].textContent = currentQuestion.answers[j].text; 
-    }
+    toDisplayAnswers.forEach(toDisplayAnswer =>{
+        var buttonIndexing = toDisplayAnswer.dataset['id'];
+        toDisplayAnswer.textContent= currentQuestion["an"+buttonIndexing];
+    });
 
  availableQuestions.splice(random,1);
- console.log(availableQuestions);
  acceptingAnswers = true;
-}
+};
 
-buttonsWrapper.addEventListener("click", function(e){
-    if (event.target.matches("button")) {
-    e.preventDefault();
-        if(!acceptingAnswers){return;}
-    acceptingAnswers=false;
+toDisplayAnswers.forEach(toDisplayAnswer =>{
+    toDisplayAnswer.addEventListener("click",e =>{
+        e.preventDefault();
+        e.stopPropagation();
+        if (!acceptingAnswers){return};
+
+    acceptingAnswers = false;
     var selectedChoice = e.target;
-    var selectedAns = selectedChoice.dataset['id'];
+    var crossAnswer = selectedChoice.dataset['id'];
+    console.log (crossAnswer == currentQuestion.answer);
 
-    
-    console.log(selectedAns);
-    getQuestions();
+    if (crossAnswer == currentQuestion.answer){
+        incrementScore(scoreBonus);
+        outcomeDiv.removeAttribute("class", "hide");
+        outcome.textContent = "Correct";
+        setTimeout (()=> {
+            outcomeDiv.setAttribute("class", "hide");
+            getQuestions();
+        }, 300);
     }
+    else{
+        outcomeDiv.removeAttribute("class", "hide");
+        outcome.textContent = "Wrong";
+        setTimeout (()=> {
+            outcomeDiv.setAttribute("class", "hide");
+            getQuestions();
+        }, 300);
+    }
+   
+    
 });
+    });
 
+function incrementScore (number) {
 
+    score+=number;
+    scoreCountText.textContent= score;
 
-
-
-
-// forEach(toDisplayAnswer =>{
-//     toDisplayAnswer.addEventListener("click", function(e){
-//         e.preventDefault();
-//         if(!acceptingAnswers) {
-//             return;
-//         }
-// acceptingAnswers=false;
-// var selectedChoice = e.target;
-// var selectedAns = selectedChoice.dataset['id'];
-// console.log(selectedAns);
-// getQuestions();
-//     });
-// });
-
-
+}
 
 // Adding an event
 startBtn.addEventListener("click", startTimer);
+
 
 
 

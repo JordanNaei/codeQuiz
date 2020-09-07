@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>!Code Quiz!</title>
     <link rel="stylesheet" href="assets/styles.css" />
-    <script src="assets/script.js" defer></script>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -17,8 +16,7 @@
   <body>
     <!-- Image and text -->
     <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">
-        <img src="" class="d-inline-block align-top" alt="" loading="lazy" />
+      <a class="navbar-brand" href="showScore.html">
         High Scores
       </a>
       <div class="time">
@@ -28,6 +26,16 @@
         <div id="seconds"></div>
       </div>
     </nav>
+    <div id="screenerQ">
+        <div id="screen-q">
+          <p class="screenTitle">Questions</p>
+          <h1 id="questionCount" class="screenInfo">0/10</h1>
+        </div>
+        <div id="screenerS">
+          <p class="screenTitle">Score</p>
+          <h1 id="scoreCount" class="screenInfo">0</h1>
+        </div>
+    </div>
     <div class="jumbotron container" id="begining">
       <h1 class="display-4">JavaScript Quiz!</h1>
       <p class="lead"></p>
@@ -39,18 +47,19 @@
       <h1 id="whereQuestions"  class="">Where is JS located in your HTML file?</h1>
       <div class="btn-group" id="buttonContainer" role="group" aria-label="Basic example"> 
         
-        <button type="button" data-Id="0" class="answers btn btn-outline-info">Script</button>
-        <button type="button" data-Id="1" class="answers btn btn-outline-info">Header</button>
-        <button type="button" data-Id="2" class="answers btn btn-outline-info">Link</button>
-        <button type="button" data-Id="3" class="answers btn btn-outline-info">Footer</button>
+        <button type="button" data-id="0" class="answers btn btn-outline-info">Script</button>
+        <button type="button" data-id="1" class="answers btn btn-outline-info">Header</button>
+        <button type="button" data-id="2" class="answers btn btn-outline-info">Link</button>
+        <button type="button" data-id="3" class="answers btn btn-outline-info">Footer</button>
      </div>
       <!-- <div>
         <a class="btn btn-dark btn-lg" href="#" role="button">Next</a>
       </div> -->
       <div id="result" class="hide">
       <hr class="breakpoint">
-      <p></p>
+      <p id="resultAnswer"></p>
     </div>
     </div>
+    <script src="assets/script.js"></script>
   </body>
 </html>

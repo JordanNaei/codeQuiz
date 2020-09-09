@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="stylesheet" href="assets/endGame.css" />
     <title>End Game</title>
     <link
     rel="stylesheet"
@@ -13,23 +13,26 @@
   />
   </head>
   <body>
-    <h1>You Complete the Quiz</h1>
-
+    <h1 id="notice">Quiz Completed!</h1>
     <div class="container">
       <div id="end" class="flex-center flec-column">
-        <h1 id="finalScore">0</h1>
+        <h1 id="finalScore"></h1>
+        <div id="goodScore" class="hide" role="alert">
+          Excllent Score 😎!
+        </div>
+        <div id="badScore" class="hide" role="alert">
+          <h2>Try harder next time 🤨🤕!</h2>
+        </div>
+        <div id="averageScore" class="hide" role="alert">
+          Good score, you can do better 😁!
+        </div>
         <form>
-
-          <input type="text" name="Username" id="username" placeholder="username" autocomplete="off"/>
-
- 
-          <button type="submit" class="btn btn-primary btn-lg" id="saveScoreBtn" disabled>Save</button>
-
+          <input type="text"  name="Username" id="username" placeholder="username" autocomplete="off"/>
+          <button type="submit" class="endForm btn btn-secondary btn-lg" id="saveScoreBtn" disabled>Save</button>
+          <button type="button" id="goHome" class="endForm btn btn-secondary btn-lg">Retry</button>
         </form>
-        <button type="button" id="goHome" class="btn btn-primary btn-lg">Retry</button>
       </div>
     </div>
-
     <script src="assets/end.js"></script>
   </body>
 </html>

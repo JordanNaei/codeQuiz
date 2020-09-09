@@ -15,41 +15,76 @@ var questionsCountText = document.getElementById("questionCount");
 var toHide= true;
 var arrayIndex=0;
 var questions= [
-               {question : "How well are you doing?", 
-                an0: "Not Good",
-                an1: "Very Good",
-                an2: "Terrible",
-                an3: "Awsome",
-                answer: 2},
-                {question : "How well mnmmnn?", 
-                an0: "Nmnmn",
-                an1: "Very",
-                an2: "Terr",
-                an3: "Aws",
+               {question : "Which of the following is the correct syntax to display “JordanNaei” in an alert box using JavaScript?", 
+                an0: "alertbox(“JordanNaei”);",
+                an1: "msg(“JordanNaei”);",
+                an2: "msgbox(“JordanNaei”);",
+                an3: "alert(“JordanNaei”);",
                 answer: 3},
-                {question : "How well ddfgdgfdf?", 
-                an0: "Not",
-                an1: "Good",
-                an2: "Terri",
-                an3: "Awshjghjkhjk",
+                {question : "What is the correct syntax for referring to an external script called “script.js”?", 
+                an0: "<script src=”script.js”>",
+                an1: "<script href=”script.js”>",
+                an2: "<script ref=”script.js”>",
+                an3: "<script name=”script.js”>",
+                answer: 0},
+                {question : "Which of the following is an advantage of using JavaScript?", 
+                an0: "Increased interactivity.",
+                an1: "Less server interaction.",
+                an2: "Immediate feedback from the users.",
+                an3: "All of the above.",
+                answer: 3},
+                {question : "The external JavaScript file must contain <script> tag", 
+                an0: "false",
+                an1: "true",
+                an2: "neither",
+                an3: "sometimes",
+                answer: 0},
+                {question : "Which of the following is not a reserved word in JavaScript?", 
+                an0: "interface",
+                an1: "throws",
+                an2: "program",
+                an3: "short",
+                answer: 2},
+                {question : "What is the syntax for creating a function in JavaScript named as jfunc?", 
+                an0: "function = jfunc()",
+                an1: "function jfunc() ",
+                an2: "function := jfunc() ",
+                an3: "function : jfunc()",
                 answer: 1},
-                {question : "What does '7ARAH mean?", 
-                an0: "shit",
-                an1: "Good",
-                an2: "choclote",
-                an3: "Awshjghjkhjk",
+                {question : "How is a function named jordan is called in JavaScript?", 
+                an0: "call jordan(); ",
+                an1: "call function jordan();",
+                an2: "jordan (); ",
+                an3: "function jordan();",
+                answer: 2},
+                  {question : "How to write an ‘if’ statement for executing some code, if 'i' is Not equal to 5",
+                an0: "if(i<>5)",
+                an1: "if i<>5",
+                an2: "if(i!=5)",
+                an3: "if i!=5",
+                answer: 2},
+                {question : "What is the correct syntax for adding comments in JavaScript?",
+                an0: "<!–This is a comment–&gt",
+                an1: "//This is a comment",
+                an2: "–This is a comment",
+                an3: "**This is a comment**",
+                answer: 1},
+                {question : "What is the JavaScript syntax for printing values in Console?",
+                an0: "print(5)",
+                an1: "console.log(5);",
+                an2: "console.print(5);",
+                an3: "print.console(5);",
                 answer: 1}
                 ],
-                
-
 availableQuestions = [...questions];
 var currentQuestion;
 var questionsIndex=0;
 var questionsCounter=0;
 var maxQuestionsCount=10;
 var acceptingAnswers= false;
-var scoreBonus=20;
+var scoreBonus=10;
 var score=0;
+var answer;
 
 
 // Writing Functions
@@ -58,9 +93,17 @@ function startTimer() {
     getQuestions();
     var secondsElapsed=0;
     var totalSeconds=90;
+    
     var timerInterval = setInterval(function() {
-        secondsElapsed++;
-        if (secondsElapsed >= totalSeconds){
+        if (!answer){
+            totalSeconds-=5;
+            answer=true;
+        }
+        else{
+            console.log("correct answer");
+        }
+     secondsElapsed++;
+    if (secondsElapsed >= totalSeconds){
             clearInterval (timerInterval);
             localStorage.setItem("latestScore", score);
             return window.location.assign("endGame.html");
@@ -95,7 +138,8 @@ function getQuestions () {
    
     toDisplayAnswers.forEach(toDisplayAnswer =>{
         var buttonIndexing = toDisplayAnswer.dataset['id'];
-        toDisplayAnswer.textContent= currentQuestion["an"+buttonIndexing];
+        toDisplayAnswer.textContent= currentQuestion["an"+buttonIndexing]; 
+     
     });
 
  availableQuestions.splice(random,1);
@@ -125,6 +169,7 @@ toDisplayAnswers.forEach(toDisplayAnswer =>{
     else{
         outcomeDiv.removeAttribute("class", "hide");
         outcome.textContent = "Wrong";
+        answer=false;
         setTimeout (()=> {
             outcomeDiv.setAttribute("class", "hide");
             getQuestions();

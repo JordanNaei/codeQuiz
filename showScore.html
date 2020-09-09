@@ -4,26 +4,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-    crossorigin="anonymous"
-  />
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="assets/highScores.css" />
     <title>Finished</title>
   </head>
   <body>
-    <h1>You Completed the Quiz</h1>
+    <h1 class="showScoreHead">🤓Best Five Scores Recorded so far🤓</h1>
     <div class="container">
-        <ul class="list-group list-group-flush" id="scoresList">
-            <li class="names list-group-item"></li>
-            <li class="names list-group-item"></li>
-            <li class="names list-group-item"></li>
-            <li class="names list-group-item"></li>
-            <li class="names list-group-item"></li>
-          </ul>
+     <div id="fiveScoreList">
+      <ul class="list-group list-group-flush">
+        <li class="names"></li>
+        <li class="names"></li>
+        <li class="names"></li>
+        <li class="names"></li>
+        <li class="names"></li>
+      </ul>
+    </div>
       <div id="end" class="flex-center flec-column">
-        <button type="button" id="showScoreBtn" class="btn btn-outline-primary">Home</button>
+        <button type="button" id="showScoreBtn" class="btn btn-secondary btn-lg">
+          Home
+        </button>
       </div>
     </div>
 

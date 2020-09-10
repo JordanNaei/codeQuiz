@@ -41,4 +41,9 @@ WHEN the game is over
 THEN I can save my initials and score(pass)
 ```
 ###
-Deployed application URL: 
+Deployed application URL: https://jordannaei.github.io/codeQuiz/.
+<img src="images/deployedApp.PNG" alt= "this is the app main page">
+
+
+
+

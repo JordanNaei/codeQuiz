@@ -1,6 +1,6 @@
 # codeQuiz Application
 ```
-This project aimed to build a JavaScript Quiz Apllication Website that offers the client the opportunity to take a JS Quiz consist of 10 questions.In case of a worng answer the client will lose 5 seconds of their alotted time. Also this application showcase the tp five scores and also allow the client to save thier score, if they wanted to do so.  
+This project aimed to build a JavaScript Quiz Apllication Website that offers the client the opportunity to take a JS Quiz consist of 10 questions.In case of a worng answer the client will lose 5 seconds of their alotted time. Also this application showcase the top five scores and allow the client to save their score, if they wanted to do so.  
 
 to ensure the following:
     -	ensuring that people with disabilities can acccess the website.
